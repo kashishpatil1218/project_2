@@ -15,6 +15,7 @@ class _PaperScreenState extends State<PaperScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: appBarr(title: 'Paper'),
       body: Padding(
         padding: EdgeInsets.all(14.r),

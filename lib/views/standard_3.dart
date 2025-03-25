@@ -20,6 +20,7 @@ class Standard3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: appBarr(title: 'Standard'),
       body: Padding(
         padding: EdgeInsets.all(12.0.r),

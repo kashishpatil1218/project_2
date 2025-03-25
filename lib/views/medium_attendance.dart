@@ -22,6 +22,7 @@ class _MediumStudentsState extends State<MediumAttendance> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: appBarr(title: 'Medium'),
       body: Padding(
         padding: EdgeInsets.all(14.0.r),

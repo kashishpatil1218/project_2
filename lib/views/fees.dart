@@ -1,27 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:project_2/views/components/FBA.dart';
 import 'package:project_2/views/components/app_bar_component.dart';
 
-class Sulllyabus extends StatefulWidget {
-  @override
-  _SulllyabusState createState() => _SulllyabusState();
-}
+class Fees extends StatelessWidget {
+  Fees({super.key});
 
-class _SulllyabusState extends State<Sulllyabus> {
-  String selectedStandard = "Standard - 6";
-  String selectedDivision = "Division B";
+  final List<Map<String, String>> teachers = [
+    {
+      "name": "Ashley",
+      "sub": "Roll No : 08",
+      "image": "assets/ashley.jpg",
+    },
+    {"name": "Nick", "subject": "Science Teacher", "image": "assets/nick.jpg"},
+    {
+      "name": "Arfa Salem",
+      "sub": "Roll No : 08",
+      "image": "assets/melanie.jpg",
+    },
+    {
+      "name": "Mohammed Bin Safi",
+      "sub": "Roll No : 08",
+      "image": "assets/samantha.jpg",
+    },
+    {"name": "Mubark Al-Amri", "sub": "Roll No : 08", "image": "assets/tom.jpg"},
+    {
+      "name": "Mouza behind",
+      "sub": "Roll No : 08",
+      "image": "assets/samantha.jpg",
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: appBarr(title: 'Syllabus'),
+      appBar: appBarr(title: 'Fees'),
       body: Padding(
-        padding: EdgeInsets.all(14.r),
+        padding: EdgeInsets.all(14.0.r),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -85,7 +102,7 @@ class _SulllyabusState extends State<Sulllyabus> {
                 ),
               ],
             ),
-            SizedBox(height: 12),
+            SizedBox(height: 10.h),
             Padding(
               padding: EdgeInsets.all(8.0.r),
               child: Container(
@@ -108,90 +125,52 @@ class _SulllyabusState extends State<Sulllyabus> {
                 ),
               ),
             ),
-            SizedBox(height: 12),
-            SubjectCard(title: "Social Science"),
-            ExpandableSubject(
-              title: "Maths",
-              chapters: [
-                "Chapter 1  Knowing Our Numbers",
-                "Chapter 2  Integers",
-                "Chapter 3  Playing with Numbers",
-              ],
+            SizedBox(height: 10.h),
+            Expanded(
+              child: ListView.builder(
+                itemCount: teachers.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 12.h),
+                    child: Card(
+                      elevation: 2,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.r),
+                      ),
+                      child: ListTile(
+                        leading: Container(
+                          height: 75.h,
+                          width: 70.w,
+                          decoration: BoxDecoration(
+                            color: Colors.blue.shade100,
+                            borderRadius: BorderRadius.circular(5.r),
+                          ),
+                        ),
+                        title: Text(
+                          teachers[index]['name']!,
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 16.sp,
+                            color: Color(0xff45586A),
+                          ),
+                        ),
+                        subtitle: Text(
+                          "${teachers[index]['sub']}",
+                          style: GoogleFonts.poppins(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xffACA9A9),
+                          ),
+                        ),
+
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: buildFloatingActionButton(),
-    );
-  }
-}
-
-class SubjectCard extends StatelessWidget {
-  final String title;
-
-  SubjectCard({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: ListTile(
-        title: Text(
-          title,
-          style: GoogleFonts.poppins(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-            color: Color(0xff45586A),
-          ),
-        ),
-        trailing: Icon(Icons.arrow_forward_ios, size: 14.sp),
-      ),
-    );
-  }
-}
-
-class ExpandableSubject extends StatefulWidget {
-  final String title;
-  final List<String> chapters;
-
-  ExpandableSubject({required this.title, required this.chapters});
-
-  @override
-  _ExpandableSubjectState createState() => _ExpandableSubjectState();
-}
-
-class _ExpandableSubjectState extends State<ExpandableSubject> {
-  bool isExpanded = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      child: ExpansionTile(
-        title: Text(
-          widget.title,
-          style: GoogleFonts.poppins(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w600,
-            color: Color(0xff45586A),
-          ),
-        ),
-        children:
-        widget.chapters
-            .map(
-              (chapter) => ListTile(
-            title: Text(
-              chapter,
-              style: GoogleFonts.poppins(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w400,
-                color: Color(0xff45586A),
-              ),
-            ),
-            trailing: Icon(Icons.arrow_forward_ios, size: 14.sp),
-          ),
-        )
-            .toList(),
       ),
     );
   }

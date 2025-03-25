@@ -7,6 +7,7 @@ class iPhone extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Image(
           image: AssetImage('asset/img/Logo.png'),
